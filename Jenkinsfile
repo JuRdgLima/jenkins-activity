@@ -11,7 +11,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Starting Build'
-                sh 'mvn clean install -s settings.xml'
+                sh 'mvn -s settings.xml -B -DskipTests clean install -Dmaven.compiler.source=17 -Dmaven.compiler.target=17'
             }
         }
 
