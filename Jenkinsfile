@@ -1,9 +1,5 @@
 pipeline {
     agent any
-    environment {
-        JAVA_HOME = '/home/julianalima/.sdkman/candidates/java/17.0.3-zulu'
-        PATH = "${JAVA_HOME}/bin:${env.PATH}"
-    }
 
     stages {
         stage('Checkout') {
@@ -15,14 +11,14 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Starting Build'
-                sh 'export JAVA_HOME=/home/julianalima/.sdkman/candidates/java/17.0.3-zulu && export PATH=$JAVA_HOME/bin:$PATH && mvn -s settings.xml -B -DskipTests clean install -Dmaven.compiler.source=17 -Dmaven.compiler.target=17'
+                sh 'mvn -s settings.xml -B -DskipTests clean install -Dmaven.compiler.source=17 -Dmaven.compiler.target=17 -Djdk.home=/home/julianalima/.sdkman/candidates/java/17.0.3-zulu'
             }
         }
 
         stage('Test') {
             steps {
             echo 'Starting Test'
-                sh 'export JAVA_HOME=/home/julianalima/.sdkman/candidates/java/17.0.3-zulu && export PATH=$JAVA_HOME/bin:$PATH && mvn test'
+                sh 'mvn test -Djdk.home=/home/julianalima/.sdkman/candidates/java/17.0.3-zulu'
             }
         }
 
