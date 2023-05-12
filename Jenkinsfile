@@ -2,6 +2,7 @@ pipeline {
     agent any
     environment {
         JAVA_HOME = '/home/julianalima/.sdkman/candidates/java/17.0.3-zulu'
+        PATH = "${JAVA_HOME}/bin:${env.PATH}"
     }
 
     stages {
