@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    environment {
+        JAVA_HOME = '/home/julianalima/.sdkman/candidates/java/17.0.3-zulu'
+    }
 
     stages {
         stage('Checkout') {
