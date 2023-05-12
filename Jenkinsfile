@@ -15,14 +15,14 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Starting Build'
-                sh 'mvn -s settings.xml -B -DskipTests clean install -Dmaven.compiler.source=17 -Dmaven.compiler.target=17'
+                sh 'export JAVA_HOME=/home/julianalima/.sdkman/candidates/java/17.0.3-zulu && export PATH=$JAVA_HOME/bin:$PATH && mvn -s settings.xml -B -DskipTests clean install -Dmaven.compiler.source=17 -Dmaven.compiler.target=17'
             }
         }
 
         stage('Test') {
             steps {
             echo 'Starting Test'
-                sh 'mvn test'
+                sh 'export JAVA_HOME=/home/julianalima/.sdkman/candidates/java/17.0.3-zulu && export PATH=$JAVA_HOME/bin:$PATH && mvn test'
             }
         }
 
